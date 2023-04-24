@@ -4,3 +4,8 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+nav {
+  font-size: 50px;
+  font-family: 'Bungee', cursive;
+}
