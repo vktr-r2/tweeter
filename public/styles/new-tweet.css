@@ -30,6 +30,7 @@ textarea {
 
   width: 100%;
   padding: 20px 10px 20px 10px;
+  font-family: 'Bungee', sans-serif;
 }
 
 
@@ -37,7 +38,6 @@ button[type="submit"] {
   display: flex; 
   background-color: #243260;
   color: #fff;
-  font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
   padding: 10px 20px;
   border: none;
