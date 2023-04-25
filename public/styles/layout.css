@@ -25,3 +25,15 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+
+ header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+
+  height: 520px;
+  width: 100%;
+  background-color: #EDE5F9;
+ }
