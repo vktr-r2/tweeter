@@ -18,7 +18,12 @@ $(document).ready(function() {
     //Target text key of the counter element/obj and assign $charsRemaining to be its value
     $counter.text($charsRemaining);
 
-
+    
+    if ($charsRemaining <= 0) {
+      $(".submit-and-count").addClass("over-limit");
+    } else {
+      $(".submit-and-count").removeClass("over-limit");
+    }
 
   });
 });
