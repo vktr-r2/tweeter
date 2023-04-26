@@ -44,3 +44,7 @@ button[type="submit"] {
   border: none;
   border-radius: 4px;
 }
+
+.over-limit {
+  color: red;
+}
