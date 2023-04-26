@@ -13,13 +13,14 @@ form {
 
 
 textarea {
+  resize: none;
   width: 100%;
   margin: 40px auto 0;
-  padding: 15px;
+  padding: 15px 15px 15px 15px;
   border: none;
   border-bottom: 3px solid black;
   text-align: center;
-  background-color: #e6e2dc;
+  background-color: #f4f1ec;
 }
 
 .submit-and-count {
