@@ -1,0 +1,50 @@
+
+article {
+  height: 300px;
+  width: 90%;
+  margin: 30px auto 30px;
+  border: 5px solid black;
+  background-color: #f4f1ec;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+article header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.avatar {
+  margin: 15px 0px 0px 30px;
+}
+
+.handle {
+  text-align: right;
+  display: inline-block;
+  margin-right: 30px;
+}
+
+article .text {
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  width: 70%;
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+article footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+footer p {
+  margin: 15px 0px 0px 30px
+}
+
+.icons {
+  margin: 15px 30px 10px 0px
+}

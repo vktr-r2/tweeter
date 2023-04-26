@@ -26,6 +26,9 @@
     
     <!-- Tweeter form -->
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    
+    <!-- Tweet posts -->
+    <link rel="stylesheet" href="/styles/posted-tweets.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -51,7 +54,7 @@
       </div>
     </nav>
 
-    <header>
+    <header class="header-main">
       <div>
           <img src="/images/profile-hex.png"> 
       </div>
@@ -84,7 +87,12 @@
           </header>
           <p class="text">TEST TWEET TEX3T HERE</p>
           <footer>
-            <p>date here</p><p>3-icons</p>
+            <p>X Days ago</p>
+            <div class="icons">
+              <i class="fa-solid fa-flag"></i>
+              <i class="fa-solid fa-retweet"></i>
+              <i class="fa-solid fa-heart-circle-plus"></i>
+            </div>
           </footer>
         </article>
       </section>
