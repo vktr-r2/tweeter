@@ -17,6 +17,9 @@ article header {
 }
 
 .avatar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin: 15px 0px 0px 30px;
 }
 
@@ -29,9 +32,12 @@ article header {
 article .text {
   display: flex;
   justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  margin: 0 auto;
   height: 150px;
   width: 70%;
-  text-align: center;
   border-bottom: 2px solid black;
 }
 
@@ -42,9 +48,29 @@ article footer {
 }
 
 footer p {
-  margin: 15px 0px 0px 30px
+  margin: 15px 0px 10px 30px
 }
 
 .icons {
   margin: 15px 30px 10px 0px
+}
+
+.fa-flag {
+  margin: 5 px;
+}
+
+.fa-retweet {
+  margin: 5 px;
+}
+
+.fa-heart-circle-plus{
+  margin: 5 px;
+}
+
+.mouse-enter {
+  color: #4056A1;
+}
+
+.shadow {
+
 }
