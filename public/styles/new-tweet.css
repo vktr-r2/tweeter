@@ -48,3 +48,8 @@ button[type="submit"] {
 .over-limit {
   color: red;
 }
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

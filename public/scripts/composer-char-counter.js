@@ -20,9 +20,12 @@ $(document).ready(function() {
 
     
     if ($charsRemaining <= 0) {
+      //
       $(".submit-and-count").addClass("over-limit");
+      $("button").addClass("disabled");
     } else {
       $(".submit-and-count").removeClass("over-limit");
+      $("button").removeClass("disabled");
     }
 
   });
