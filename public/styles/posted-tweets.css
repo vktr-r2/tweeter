@@ -72,5 +72,6 @@ footer p {
 }
 
 .shadow {
-
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 8px 8px 5px rgba(36,50,96,0.8);
 }
