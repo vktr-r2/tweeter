@@ -23,23 +23,24 @@ const data = [
       "name": "Descartes",
       "avatars": "https://i.imgur.com/nlhLi3I.png",
       "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
+      "content": {
+        "text": "Je pense , donc je suis"
+      },
+      "created_at": 1461113959088
     },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Vik",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@vr" },
-    "content": {
-      "text": "Test, test, 123"
-    },
-    "created_at": 1461113959088
-  }
-]
-
+    {
+      "user": {
+        "name": "Vik",
+        "avatars": "https://i.imgur.com/nlhLi3I.png",
+        "handle": "@vr" },
+        "content": {
+          "text": "Test, test, 123"
+        },
+        "created_at": 1461113959088
+      }
+    ]
+    
+    $(document).ready(function() {
 
 const createTweetElement = (tweetData) => {
   // Extract the necessary data
@@ -80,25 +81,29 @@ const createTweetElement = (tweetData) => {
       $('#tweets-container').append(createTweetElement(tweet));
     }
   }
-  
-  $( "#target" ).on( "submit", function( event ) {
-    alert( "Handler for `submit` called." );
-    event.preventDefault();
-  });
 
-
-
-
-
-$(document).ready(function() {
 
   //Render existing tweets from hardcoded data
   renderTweets(data);
 
   //Event listener: target #submit-tweet form, listen for submit
   $('#submit-tweet').submit(function(event) {
-    event.preventDefault(); // prevent submit from refreshing page
-    console.log($(this).serialize());
+    event.preventDefault();   // prevent submit from refreshing page
+    const newTweetData = ($(this).serialize());  //turns form data into a query string and stores in newTweetData
+    
+    $.ajax({
+      url: "/tweets", // URL path to send AJAX request
+      type: "POST", // type of request
+      data: newTweetData, //data to send with request
+      success: function(response) { //if request successful send response 
+        console.log("Request succeeded:", response);
+      },
+      error: function(xhr, status, error) { // if request fails, throw error
+        console.log("Request failed:", error);
+      }
+    });
+  
+    $(this).trigger("reset");   //reset the form after submission
   });
 });
 
