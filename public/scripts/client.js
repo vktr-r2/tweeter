@@ -32,6 +32,7 @@ $(document).ready(function() {
     const $heartIcon = $("<i>", { "class": "fa-solid fa-heart-circle-plus" });
   
     // Append HTML blocks to $article
+    // >> First append smaller elements together, then append appended elements to larger ones
     $avatarDiv.append($avatarImg, $nameStr);
     $header.append($avatarDiv, $handleStr);
     $iconsDiv.append($flagIcon, $retweenIcon, $heartIcon);
@@ -57,47 +58,56 @@ $(document).ready(function() {
   $("#submit-tweet").submit(function(event) {
     event.preventDefault();   // prevent submit from refreshing page
     const newTweetData = ($(this).serialize());  //turns form data into a query string and stores in newTweetData
-    const charCount = $("#tweet-text").val().length;  //Check character count of text input only
+    const charCount = $("#tweet-text").val().length;  //Check character count of text input only(no extra chars from query)
 
+    //If charCount 0 or > 140 throw error
     if (charCount > 140) {
         alert("Exceeded maximum characters");
     } else if (charCount === 0) {
         alert("Nothing to tweet!");
-    } else {
+    } else 
+    //If charCount okay, proceed with AJAX post promise chain
+          {
         $.ajax({
           url: "/tweets", // URL path to send AJAX request
           method: "POST", // type of request
           data: newTweetData //data to send with request
         })
-        .then(function(response) { //if request successful send response
+        //if request successful send response
+        .then(function(response) { 
           console.log("Request succeeded:", response);
-          
         })
-        .catch(function(error) { // if request fails, throw error
+        //if send response successful, then call loadTweets function (allows site to render tweet without refresh)
+        .then(()=> {
+          loadTweets();
+        })
+        //if there is an error anywhere in the promise chain, throw error
+        .catch(function(error) {
           console.log("Request failed:", error);
         });
-        
-        $(this).trigger("reset");   //reset the form after submission
+        //reset the form after submission
+        $(this).trigger("reset");   
     }
     
   });
 
     //GET TWEETS FROM SERVER//
     const loadTweets = function () {
-      //
+      //Get JSON data from /tweets URL
       $.ajax("/tweets", { method: "GET" })
-      .then(function (response) {//if request succeeds, response received :) 
+      //if request succeeds, then call renderTweets :) 
+      .then(function (response) {
         console.log("Success: ", response);
         renderTweets(response);
       })
-      .catch(function(error) { // if request fails, throw error
+      //If any promise fails, throw error
+      .catch(function(error) {
         console.log("Request failed:", error);
       });
     }
+
     //loadTweets called on page load
     loadTweets();
-
-
-
+    
 });
 
