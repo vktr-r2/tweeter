@@ -40,7 +40,13 @@ const createTweetElement = (tweetData) => {
     const $retweenIcon = $("<i>", { "class": "fa-solid fa-retweet" });
     const $heartIcon = $("<i>", { "class": "fa-solid fa-heart-circle-plus" });
   
-    
+    // Append HTML blocks to the DOM tree
+    $avatarDiv.append($avatarImg, $nameStr);
+    $header.append($avatarDiv, $handleStr);
+    $iconsDiv.append($flagIcon, $retweenIcon, $heartIcon);
+    $footer.append($dateStr , $iconsDiv);
+    $article.append($header, $textStr, $footer);
+  
     return $article;
 
 
