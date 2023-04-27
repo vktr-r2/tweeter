@@ -82,7 +82,7 @@ $(document).ready(function() {
     //For each tweet object in tweets array
     for (const tweet of tweets) {
       //Append to existing #tweets-container the result of createTweetElement
-      $('#tweets-container').append(createTweetElement(tweet));
+      $("#tweets-container").append(createTweetElement(tweet));
     }
   };
 
@@ -95,7 +95,7 @@ $(document).ready(function() {
   //POST TWEET TO SERVER ON 'SUBMIT'//
 
   //Event listener: target #submit-tweet form, listen for submit
-  $('#submit-tweet').submit(function(event) {
+  $("#submit-tweet").submit(function(event) {
     event.preventDefault();   // prevent submit from refreshing page
     const newTweetData = ($(this).serialize());  //turns form data into a query string and stores in newTweetData
 
@@ -110,23 +110,25 @@ $(document).ready(function() {
     .catch(function(error) { // if request fails, throw error
       console.log("Request failed:", error);
     });
-    
-    // $.ajax({
-    //   url: "/tweets", // URL path to send AJAX request
-    //   type: "POST", // type of request
-    //   data: newTweetData, //data to send with request
-    //   success: function(response) { //if request successful send response
-    //     console.log("Request succeeded:", response);
-    //   },
-    //   error: function(xhr, status, error) { // if request fails, throw error
-    //     console.log("Request failed:", error);
-    //   }
-    // });
   
     $(this).trigger("reset");   //reset the form after submission
 
     
   });
+
+    //GET TWEETS FROM SERVER//
+    const loadTweets = function () {
+      //
+      $.ajax("/tweets", { method: "GET" })
+      .then(function (response) {//if request succeeds, response received :) 
+        console.log("Success: ", response);
+      })
+      .catch(function(error) { // if request fails, throw error
+        console.log("Request failed:", error);
+      });
+    }
+    //loadTweets called on page load
+    loadTweets();
 
 
 
