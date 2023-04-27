@@ -61,7 +61,7 @@ $(document).ready(function() {
     const $handleStr = $("<p>", { "class": "handle" }).text(handle);
     const $textStr = $("<p>", { "class": "text" }).text(text);
     const $footer = $("<footer>");
-    const $dateStr = $("<p>").text(date);
+    const $dateStr = $("<p>").text(timeago.format(date));
     const $iconsDiv = $("<div>", { "class": "icons" });
     const $flagIcon = $("<i>", { "class": "fa-solid fa-flag" });
     const $retweenIcon = $("<i>", { "class": "fa-solid fa-retweet" });
