@@ -5,40 +5,40 @@
  */
 
 // Test / driver code (temporary). Eventually will get this from the server.
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Vik",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@vr" },
-    "content": {
-      "text": "Test, test, 123"
-    },
-    "created_at": 1461113959088
-  }
-];
+// const data = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": "https://i.imgur.com/73hZDYK.png"
+//       ,
+//       "handle": "@SirIsaac"
+//     },
+//     "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//     "created_at": 1461116232227
+//   },
+//   {
+//     "user": {
+//       "name": "Descartes",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@rd" },
+//     "content": {
+//       "text": "Je pense , donc je suis"
+//     },
+//     "created_at": 1461113959088
+//   },
+//   {
+//     "user": {
+//       "name": "Vik",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@vr" },
+//     "content": {
+//       "text": "Test, test, 123"
+//     },
+//     "created_at": 1461113959088
+//   }
+// ];
     
 $(document).ready(function() {
 
@@ -90,7 +90,7 @@ $(document).ready(function() {
   //RENDER TWEETS//
 
   //Render existing tweets from hardcoded data (Array of objects)
-  renderTweets(data);
+  // renderTweets(data);
 
   //POST TWEET TO SERVER ON 'SUBMIT'//
 
@@ -106,6 +106,7 @@ $(document).ready(function() {
     })
     .then(function(response) { //if request successful send response
       console.log("Request succeeded:", response);
+      
     })
     .catch(function(error) { // if request fails, throw error
       console.log("Request failed:", error);
@@ -122,6 +123,7 @@ $(document).ready(function() {
       $.ajax("/tweets", { method: "GET" })
       .then(function (response) {//if request succeeds, response received :) 
         console.log("Success: ", response);
+        renderTweets(response);
       })
       .catch(function(error) { // if request fails, throw error
         console.log("Request failed:", error);
