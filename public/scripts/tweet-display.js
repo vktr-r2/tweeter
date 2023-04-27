@@ -30,8 +30,7 @@ $(document).ready(function() {
     $(this).removeClass("mouse-enter");
   });
 
-  //Handle mouseenter + mouseleave on entire article
-
+  //Handle mouseenter + mouseleave on entire article tweet class
     $(".tweet").mouseenter(function() {
       $(this).addClass("shadow");
     });
@@ -40,6 +39,4 @@ $(document).ready(function() {
       $(this).removeClass("shadow");
     });
   
-
-
 });

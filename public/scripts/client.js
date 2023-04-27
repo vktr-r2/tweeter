@@ -12,7 +12,7 @@ const tweetData = {
       "handle": "@vktr-r2"
     },
   "content": {
-      "text": "Working with HTML + JQuery + the DOM is difficult"
+      "text": "Test tweet... random string here"
     },
   "created_at": 1461116232227
 }
@@ -40,7 +40,7 @@ const createTweetElement = (tweetData) => {
     const $retweenIcon = $("<i>", { "class": "fa-solid fa-retweet" });
     const $heartIcon = $("<i>", { "class": "fa-solid fa-heart-circle-plus" });
   
-    // Append HTML blocks to the DOM tree
+    // Append HTML blocks to $article
     $avatarDiv.append($avatarImg, $nameStr);
     $header.append($avatarDiv, $handleStr);
     $iconsDiv.append($flagIcon, $retweenIcon, $heartIcon);
@@ -54,6 +54,8 @@ const createTweetElement = (tweetData) => {
 
 const $tweet = createTweetElement(tweetData);
 
+$(document).ready(function() {
 // Test / driver code (temporary)
 console.log($tweet); // to see what it looks like
 $('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+});
