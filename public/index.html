@@ -72,7 +72,7 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <form method="POST" action="/tweets">
+        <form method="POST" action="/tweets" id="submit-tweet">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div class="submit-and-count">
             <button type="submit">Tweet</button>
@@ -82,24 +82,6 @@
       </section>
 
       <section>
-        <!-- <article class="tweet">
-          <header>
-            <div class="avatar">
-              <img src="#">
-              <p>name</p>
-            </div>
-            <p class="handle">@handle</p>
-          </header>
-          <p class="text">TEST TWEET TEX3T HERE</p>
-          <footer>
-            <p>X Days ago</p>
-            <div class="icons">
-              <i class="fa-solid fa-flag"></i>
-              <i class="fa-solid fa-retweet"></i>
-              <i class="fa-solid fa-heart-circle-plus"></i>
-            </div>
-          </footer>
-        </article> -->
         <article id="tweets-container">
 
         </article>
