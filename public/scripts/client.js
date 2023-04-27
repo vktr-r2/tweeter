@@ -23,30 +23,32 @@ const data = [
       "name": "Descartes",
       "avatars": "https://i.imgur.com/nlhLi3I.png",
       "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
+    "content": {
+      "text": "Je pense , donc je suis"
     },
-    {
-      "user": {
-        "name": "Vik",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@vr" },
-        "content": {
-          "text": "Test, test, 123"
-        },
-        "created_at": 1461113959088
-      }
-    ]
+    "created_at": 1461113959088
+  },
+  {
+    "user": {
+      "name": "Vik",
+      "avatars": "https://i.imgur.com/nlhLi3I.png",
+      "handle": "@vr" },
+    "content": {
+      "text": "Test, test, 123"
+    },
+    "created_at": 1461113959088
+  }
+];
     
-    $(document).ready(function() {
+$(document).ready(function() {
 
-const createTweetElement = (tweetData) => {
+  //HELPER FUNCTIONS//
+
+  const createTweetElement = (tweetData) => {
   // Extract the necessary data
-  const { name, avatars, handle } = tweetData.user;
-  const { text } = tweetData.content;
-  const date = tweetData.created_at;
+    const { name, avatars, handle } = tweetData.user;
+    const { text } = tweetData.content;
+    const date = tweetData.created_at;
 
     // Build the HTML blocks making the tweet
     // $ "<>" will create element
@@ -76,34 +78,57 @@ const createTweetElement = (tweetData) => {
 
   };
   
-  const renderTweets = function(tweets) { 
+  const renderTweets = (tweets) => {
+    //For each tweet object in tweets array
     for (const tweet of tweets) {
+      //Append to existing #tweets-container the result of createTweetElement
       $('#tweets-container').append(createTweetElement(tweet));
     }
-  }
+  };
 
+  
+  //RENDER TWEETS//
 
-  //Render existing tweets from hardcoded data
+  //Render existing tweets from hardcoded data (Array of objects)
   renderTweets(data);
+
+  //POST TWEET TO SERVER ON 'SUBMIT'//
 
   //Event listener: target #submit-tweet form, listen for submit
   $('#submit-tweet').submit(function(event) {
     event.preventDefault();   // prevent submit from refreshing page
     const newTweetData = ($(this).serialize());  //turns form data into a query string and stores in newTweetData
-    
+
     $.ajax({
       url: "/tweets", // URL path to send AJAX request
-      type: "POST", // type of request
-      data: newTweetData, //data to send with request
-      success: function(response) { //if request successful send response 
-        console.log("Request succeeded:", response);
-      },
-      error: function(xhr, status, error) { // if request fails, throw error
-        console.log("Request failed:", error);
-      }
+      method: "POST", // type of request
+      data: newTweetData //data to send with request
+    })
+    .then(function(response) { //if request successful send response
+      console.log("Request succeeded:", response);
+    })
+    .catch(function(error) { // if request fails, throw error
+      console.log("Request failed:", error);
     });
+    
+    // $.ajax({
+    //   url: "/tweets", // URL path to send AJAX request
+    //   type: "POST", // type of request
+    //   data: newTweetData, //data to send with request
+    //   success: function(response) { //if request successful send response
+    //     console.log("Request succeeded:", response);
+    //   },
+    //   error: function(xhr, status, error) { // if request fails, throw error
+    //     console.log("Request failed:", error);
+    //   }
+    // });
   
     $(this).trigger("reset");   //reset the form after submission
+
+    
   });
+
+
+
 });
 
