@@ -3,42 +3,6 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-
-// Test / driver code (temporary). Eventually will get this from the server.
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png"
-//       ,
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd" },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   },
-//   {
-//     "user": {
-//       "name": "Vik",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@vr" },
-//     "content": {
-//       "text": "Test, test, 123"
-//     },
-//     "created_at": 1461113959088
-//   }
-// ];
     
 $(document).ready(function() {
 
@@ -86,11 +50,6 @@ $(document).ready(function() {
     }
   };
 
-  
-  //RENDER TWEETS//
-
-  //Render existing tweets from hardcoded data (Array of objects)
-  // renderTweets(data);
 
   //POST TWEET TO SERVER ON 'SUBMIT'//
 
@@ -98,22 +57,28 @@ $(document).ready(function() {
   $("#submit-tweet").submit(function(event) {
     event.preventDefault();   // prevent submit from refreshing page
     const newTweetData = ($(this).serialize());  //turns form data into a query string and stores in newTweetData
+    const charCount = $("#tweet-text").val().length;  //Check character count of text input only
 
-    $.ajax({
-      url: "/tweets", // URL path to send AJAX request
-      method: "POST", // type of request
-      data: newTweetData //data to send with request
-    })
-    .then(function(response) { //if request successful send response
-      console.log("Request succeeded:", response);
-      
-    })
-    .catch(function(error) { // if request fails, throw error
-      console.log("Request failed:", error);
-    });
-  
-    $(this).trigger("reset");   //reset the form after submission
-
+    if (charCount > 140) {
+        alert("Exceeded maximum characters");
+    } else if (charCount === 0) {
+        alert("Nothing to tweet!");
+    } else {
+        $.ajax({
+          url: "/tweets", // URL path to send AJAX request
+          method: "POST", // type of request
+          data: newTweetData //data to send with request
+        })
+        .then(function(response) { //if request successful send response
+          console.log("Request succeeded:", response);
+          
+        })
+        .catch(function(error) { // if request fails, throw error
+          console.log("Request failed:", error);
+        });
+        
+        $(this).trigger("reset");   //reset the form after submission
+    }
     
   });
 

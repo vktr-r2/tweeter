@@ -19,13 +19,13 @@ $(document).ready(function() {
     $counter.text($charsRemaining);
 
     
-    if ($charsRemaining <= 0) {
+    if ($charsRemaining < 0) {
       //
       $(".submit-and-count").addClass("over-limit");
-      $("button").addClass("disabled");
+      // $("button").addClass("disabled");
     } else {
       $(".submit-and-count").removeClass("over-limit");
-      $("button").removeClass("disabled");
+      // $("button").removeClass("disabled");
     }
 
   });
