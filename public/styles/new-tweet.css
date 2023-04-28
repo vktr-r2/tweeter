@@ -50,6 +50,11 @@ textarea {
   word-wrap: break-word;
 }
 
+textarea:focus,
+textarea:active {
+  outline: none;
+}
+
 .submit-and-count {
   display: flex;
   justify-content: space-between;
