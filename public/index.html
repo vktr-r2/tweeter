@@ -74,6 +74,10 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
+        <div class="validation">
+          <h4 class="error1">ERROR: Character limit exceeded</h4>
+          <h4 class="error2">ERROR: Please enter a tweet</h4>
+        </div>
         <form method="POST" action="/tweets" id="submit-tweet">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div class="submit-and-count">
@@ -81,6 +85,7 @@
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
+
       </section>
 
       <section>

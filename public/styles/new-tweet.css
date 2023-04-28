@@ -1,5 +1,23 @@
+.validation{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-.new-tweet {
+  width: 40%;
+  height: 150px;
+  background-color: rgb(252, 231, 234); 
+  color: red;
+  padding: 10px;
+  border: 3px solid red;
+  border-radius: 0 0 25px 25px; 
+  border-top: none;
+  box-shadow: 1px 1px 1px #aaaaaa;
+  margin: 0 auto 20px;
+}
+
+.submit-tweet {
   height: 200px;
 }
 
@@ -53,3 +71,4 @@ button[type="submit"] {
   opacity: 0.5;
   pointer-events: none;
 }
+
