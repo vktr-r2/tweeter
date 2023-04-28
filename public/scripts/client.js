@@ -4,10 +4,10 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const renderTweets = require('./helper-functions');
+// const renderTweets = require("./helper-functions");
 
-$(document).ready(function () {
-  //HELPER FUNCTIONS//
+$(document).ready(function() {
+  // //HELPER FUNCTIONS//
 
   const createTweetElement = (tweetData) => {
     // Extract the necessary data
@@ -55,7 +55,7 @@ $(document).ready(function () {
   //POST TWEET TO SERVER ON 'SUBMIT'//
 
   //Event listener: target #submit-tweet form, listen for submit
-  $("#submit-tweet").submit(function (event) {
+  $("#submit-tweet").submit(function(event) {
     event.preventDefault(); // prevent submit from refreshing page
     const newTweetData = $(this).serialize(); //turns form data into a query string and stores in newTweetData
     const charCount = $("#tweet-text").val().length; //Check character count of text input only(no extra chars from query)
@@ -70,7 +70,7 @@ $(document).ready(function () {
         )
         .slideDown(500);
       $(".validation").css("display", "flex");
-      setTimeout(function () {
+      setTimeout(function() {
         $(".validation").slideUp(500);
       }, 3500);
     } else if (charCount === 0) {
@@ -80,7 +80,7 @@ $(document).ready(function () {
         )
         .slideDown(500);
       $(".validation").css("display", "flex");
-      setTimeout(function () {
+      setTimeout(function() {
         $(".validation").slideUp(500);
       }, 3500);
     }
@@ -93,7 +93,7 @@ $(document).ready(function () {
         data: newTweetData, //data to send with request
       })
         //if request successful send response
-        .then(function (response) {
+        .then(function(response) {
           console.log("Request succeeded:", response);
         })
         //if send response successful, then call loadTweets function (allows site to render tweet without refresh)
@@ -101,7 +101,7 @@ $(document).ready(function () {
           loadTweets();
         })
         //if there is an error anywhere in the promise chain, throw error
-        .catch(function (error) {
+        .catch(function(error) {
           console.log("Request failed:", error);
         });
       //reset the form after submission
@@ -110,25 +110,20 @@ $(document).ready(function () {
   });
 
   //GET TWEETS FROM SERVER//
-  const loadTweets = function () {
+  const loadTweets = function() {
     //Get JSON data from /tweets URL
     $.ajax("/tweets", { method: "GET" })
       //if request succeeds, then call renderTweets :)
-      .then(function (response) {
+      .then(function(response) {
         console.log("Success: ", response);
         renderTweets(response);
       })
       //If any promise fails, throw error
-      .catch(function (error) {
+      .catch(function(error) {
         console.log("Request failed:", error);
       });
   };
 
   //loadTweets called on page load for default tweets
   loadTweets();
-
-  //Listener targeting nav button.  Toggles new-tweet form visibility
-  $(".nav-button").click(function () {
-    $(".new-tweet").slideToggle();
-  });
 });

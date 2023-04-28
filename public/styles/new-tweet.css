@@ -1,3 +1,5 @@
+
+
 .validation{
   display: none;
   flex-direction: column;
@@ -22,6 +24,10 @@
 .validation i {
   color: red;
   margin-right: 10px;
+}
+
+.new-tweet {
+  display: none;
 }
 
 .submit-tweet {
