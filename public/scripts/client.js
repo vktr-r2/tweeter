@@ -59,10 +59,19 @@ $(document).ready(function () {
 
     //If charCount 0 or > 140 throw error
     if (charCount > 140) {
-      alert("Exceeded maximum characters");
+      $(".validation").html('<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>').slideDown(500);
+      $('.validation').css('display', 'flex');
+      setTimeout(function() {
+        $('.validation').slideUp(500);
+      }, 3500);
     } else if (charCount === 0) {
-      alert("Nothing to tweet!");
+      $(".validation").html('<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>').slideDown(500);
+      $('.validation').css('display', 'flex');
+      setTimeout(function() {
+        $('.validation').slideUp(500);
+      }, 3500);
     }
+    
     //If charCount okay, proceed with AJAX post promise chain
     else {
       $.ajax({
