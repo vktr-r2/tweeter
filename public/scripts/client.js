@@ -6,10 +6,7 @@
 
 // const renderTweets = require('./helper-functions');
 
-
 $(document).ready(function () {
-
-  
   //HELPER FUNCTIONS//
 
   const createTweetElement = (tweetData) => {
@@ -36,7 +33,7 @@ $(document).ready(function () {
     const $heartIcon = $("<i>", { class: "fas fa-heart-circle-plus" });
 
     // Append HTML blocks to $article
-    // >> First append smaller elements together, then append appended elements to larger ones
+    // >> Using append, group smaller elements together, then append groups to parent elements
     $avatarDiv.append($avatarImg, $nameStr);
     $header.append($avatarDiv, $handleStr);
     $iconsDiv.append($flagIcon, $retweenIcon, $heartIcon);
@@ -48,7 +45,7 @@ $(document).ready(function () {
 
   const renderTweets = (tweets) => {
     //Empty the container each time tweets are rendered
-    $("#tweets-container").empty()
+    $("#tweets-container").empty();
     for (const tweet of tweets) {
       //Prepend to container the result of createTweetElement (works in reverse chron order)
       $("#tweets-container").prepend(createTweetElement(tweet));
@@ -63,21 +60,31 @@ $(document).ready(function () {
     const newTweetData = $(this).serialize(); //turns form data into a query string and stores in newTweetData
     const charCount = $("#tweet-text").val().length; //Check character count of text input only(no extra chars from query)
 
-    //If charCount 0 or > 140 throw error
+    //If charCount 0 or > 140 throw HTML formatted error
+    //>>Slide animations take 0.5 secs
+    //>>setTimeout used to slideUp error after 3.5 secs
     if (charCount > 140) {
-      $(".validation").html('<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>').slideDown(500);
-      $('.validation').css('display', 'flex');
-      setTimeout(function() {
-        $('.validation').slideUp(500);
+      $(".validation")
+        .html(
+          '<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>'
+        )
+        .slideDown(500);
+      $(".validation").css("display", "flex");
+      setTimeout(function () {
+        $(".validation").slideUp(500);
       }, 3500);
     } else if (charCount === 0) {
-      $(".validation").html('<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>').slideDown(500);
-      $('.validation').css('display', 'flex');
-      setTimeout(function() {
-        $('.validation').slideUp(500);
+      $(".validation")
+        .html(
+          '<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>'
+        )
+        .slideDown(500);
+      $(".validation").css("display", "flex");
+      setTimeout(function () {
+        $(".validation").slideUp(500);
       }, 3500);
     }
-    
+
     //If charCount okay, proceed with AJAX post promise chain
     else {
       $.ajax({
@@ -117,6 +124,11 @@ $(document).ready(function () {
       });
   };
 
-  //loadTweets called on page load
+  //loadTweets called on page load for default tweets
   loadTweets();
+
+  //Listener targeting nav button.  Toggles new-tweet form visibility
+  $(".nav-button").click(function () {
+    $(".new-tweet").slideToggle();
+  });
 });
