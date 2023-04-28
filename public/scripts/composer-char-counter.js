@@ -29,4 +29,11 @@ $(document).ready(function() {
     }
 
   });
+
+  $("form").on("submit", function() {
+    // Reset $charsRemaining to 140
+    const $counter = $(this).find(".counter");
+    $counter.text(140);
+  });
+
 });
