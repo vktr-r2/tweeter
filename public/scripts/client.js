@@ -4,7 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// const renderTweets = require('./helper-functions');
+
+
 $(document).ready(function () {
+
+  
   //HELPER FUNCTIONS//
 
   const createTweetElement = (tweetData) => {
@@ -26,9 +31,9 @@ $(document).ready(function () {
     const $footer = $("<footer>");
     const $dateStr = $("<p>").text(timeago.format(date));
     const $iconsDiv = $("<div>", { class: "icons" });
-    const $flagIcon = $("<i>", { class: "fa-solid fa-flag" });
-    const $retweenIcon = $("<i>", { class: "fa-solid fa-retweet" });
-    const $heartIcon = $("<i>", { class: "fa-solid fa-heart-circle-plus" });
+    const $flagIcon = $("<i>", { class: "fas fa-flag" });
+    const $retweenIcon = $("<i>", { class: "fas fa-retweet" });
+    const $heartIcon = $("<i>", { class: "fas fa-heart-circle-plus" });
 
     // Append HTML blocks to $article
     // >> First append smaller elements together, then append appended elements to larger ones
@@ -42,10 +47,11 @@ $(document).ready(function () {
   };
 
   const renderTweets = (tweets) => {
-    //For each tweet object in tweets array
+    //Empty the container each time tweets are rendered
+    $("#tweets-container").empty()
     for (const tweet of tweets) {
-      //Append to existing #tweets-container the result of createTweetElement
-      $("#tweets-container").append(createTweetElement(tweet));
+      //Prepend to container the result of createTweetElement (works in reverse chron order)
+      $("#tweets-container").prepend(createTweetElement(tweet));
     }
   };
 
