@@ -1,23 +1,21 @@
 $(document).ready(function () {
   //Add keyup event listener
   $("#tweet-text").on("input", function () {
-    //Declare value const and store $textarea value >> wrap 'this' with jQuery to create object + use .val() method to get value
-    const $value = $(this).val();
 
-    //Characters remaining = 140 minus current value length
-    const $charsRemaining = 140 - $value.length;
+    //Use 140 minus current length of text input string (this) to calculate charsRemaining
+    const $charsRemaining = 140 - $(this).val().length;
 
-    //Select counter element >> $(this).closest traverses to parent element ".new-tweet" >> find ".counter" traverses back down
+    //Select counter element >> .closest() traverses to parent element, find() traverses back down to target
     const $counter = $(this).closest(".new-tweet").find(".counter");
 
-    //Target text key of the counter element/obj and assign $charsRemaining to be its value
+    //Target counter element and change $charsRemaining to be the text appearing with .text()
     $counter.text($charsRemaining);
 
     if ($charsRemaining < 0) {
       //
-      $(".submit-and-count").addClass("over-limit");
+      $counter.addClass("over-limit");
     } else {
-      $(".submit-and-count").removeClass("over-limit");
+      $counter.removeClass("over-limit");
     }
   });
 
