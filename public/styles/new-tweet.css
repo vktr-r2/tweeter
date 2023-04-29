@@ -1,6 +1,4 @@
-
-
-.validation{
+.validation {
   display: none;
   flex-direction: column;
   align-items: center;
@@ -9,16 +7,16 @@
 
   width: 40%;
   height: 100px;
-  background-color: white; 
+  background-color: white;
   color: black;
   font-weight: 600;
   padding: 10px;
   border: 3px solid red;
-  border-radius: 0 0 25px 25px; 
+  border-radius: 0 0 25px 25px;
   border-top: none;
   box-shadow: 1px 1px 1px #aaaaaa;
   margin: 0 auto 20px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .validation i {
@@ -34,14 +32,12 @@
   height: 200px;
 }
 
-
 form {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: start;
   align-content: space-between;
 }
-
 
 textarea {
   height: 100px;
@@ -69,12 +65,11 @@ textarea:active {
 
   width: 100%;
   padding: 20px 10px 20px 10px;
-  font-family: 'Bungee', sans-serif;
+  font-family: "Bungee", sans-serif;
 }
 
-
 button[type="submit"] {
-  display: flex; 
+  display: flex;
   background-color: #243260;
   color: #fff;
   font-size: 16px;
@@ -91,4 +86,3 @@ button[type="submit"] {
   opacity: 0.5;
   pointer-events: none;
 }
-

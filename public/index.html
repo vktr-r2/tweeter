@@ -44,10 +44,7 @@
     <script type="text/javascript" src="/scripts/client.js"></script>
 
     <!-- Character Counter JS -->
-    <script
-      type="text/javascript"
-      src="/scripts/composer.js"
-    ></script>
+    <script type="text/javascript" src="/scripts/composer.js"></script>
 
     <!-- Tweet Display JS -->
     <script type="text/javascript" src="/scripts/tweet-display.js"></script>
@@ -77,38 +74,41 @@
       </button>
     </nav>
 
-    <header class="header-main">
-      <div>
-        <img src="/images/profile-hex.png" />
-      </div>
-      <br />
-      <div>
-        <h2>Lila Ray</h2>
-      </div>
-    </header>
-
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <div class="validation">
-          <!-- Error message rendered here by JQuery -->
+    <section class="desktop-container">
+      <header class="header-main">
+        <div>
+          <img src="/images/profile-hex.png" />
         </div>
-        <form method="POST" action="/tweets" id="submit-tweet">
-          <textarea
-            name="text"
-            id="tweet-text"
-            placeholder="What are you humming about?"
-          ></textarea>
-          <div class="submit-and-count">
-            <button type="submit">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
-          </div>
-        </form>
-      </section>
+        <br />
+        <div>
+          <h2>Lila Ray</h2>
+        </div>
+      </header>
 
-      <section>
-        <article id="tweets-container"></article>
-      </section>
-    </main>
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class="new-tweet">
+          <div class="validation">
+            <!-- Error message rendered here by JQuery -->
+          </div>
+          <form method="POST" action="/tweets" id="submit-tweet">
+            <textarea
+              name="text"
+              id="tweet-text"
+              placeholder="What are you humming about?"
+            ></textarea>
+            <div class="submit-and-count">
+              <button type="submit">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text"
+                >140</output
+              >
+            </div>
+          </form>
+        </section>
+        <section>
+          <article id="tweets-container"></article>
+        </section>
+      </main>
+    </section>
   </body>
 </html>

@@ -1,9 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
   //Select and store the first element with the name "text"
   const $textarea = document.getElementsByName("text")[0];
 
   //Add keyup event listener
-  $textarea.addEventListener("keyup", function() {
+  $textarea.addEventListener("keyup", function () {
     //Declare value const and store $textarea value >> wrap 'this' with jQuery to create object + use .val() method to get value
     const $value = $(this).val();
 
@@ -19,21 +19,19 @@ $(document).ready(function() {
     if ($charsRemaining < 0) {
       //
       $(".submit-and-count").addClass("over-limit");
-      // $("button").addClass("disabled");
     } else {
       $(".submit-and-count").removeClass("over-limit");
-      // $("button").removeClass("disabled");
     }
   });
-  
+
   // Reset $charsRemaining to 140 after tweet submit
-  $("form").on("submit", function() {
+  $("form").on("submit", function () {
     const $counter = $(this).closest(".new-tweet").find(".counter");
     $counter.text(140);
   });
 
   //Listener targeting nav button.  Toggles new-tweet form visibility
-  $(".nav-button").click(function() {
+  $(".nav-button").click(function () {
     $(".new-tweet").slideToggle();
   });
 });

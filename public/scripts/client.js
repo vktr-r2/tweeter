@@ -4,20 +4,15 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const renderTweets = require("./helper-functions");
-
-$(document).ready(function() {
+$(document).ready(function () {
   // //HELPER FUNCTIONS//
-
   const createTweetElement = (tweetData) => {
     // Extract the necessary data
     const { name, avatars, handle } = tweetData.user;
     const { text } = tweetData.content;
     const date = tweetData.created_at;
 
-    // Build the HTML blocks making the tweet
-    // $ "<>" will create element
-    // Second object argument passed to $ can include class or ID info
+    // Build the HTML blocks making the tweet.  First arg builds element, second arg adds class/id
     const $article = $("<article>", { class: "tweet" });
     const $header = $("<header>");
     const $avatarDiv = $("<div>", { class: "avatar" });
@@ -26,14 +21,13 @@ $(document).ready(function() {
     const $handleStr = $("<p>", { class: "handle" }).text(handle);
     const $textStr = $("<p>", { class: "text" }).text(text);
     const $footer = $("<footer>");
-    const $dateStr = $("<p>").text(timeago.format(date));
+    const $dateStr = $("<p>").text(timeago.format(date)); //timeago used to format date + how long ago it was
     const $iconsDiv = $("<div>", { class: "icons" });
     const $flagIcon = $("<i>", { class: "fas fa-flag" });
     const $retweenIcon = $("<i>", { class: "fas fa-retweet" });
     const $heartIcon = $("<i>", { class: "fas fa-heart-circle-plus" });
 
-    // Append HTML blocks to $article
-    // >> Using append, group smaller elements together, then append groups to parent elements
+    // Append HTML blocks to $article.  First group smaller elements together, then append groups to parent elements
     $avatarDiv.append($avatarImg, $nameStr);
     $header.append($avatarDiv, $handleStr);
     $iconsDiv.append($flagIcon, $retweenIcon, $heartIcon);
@@ -47,61 +41,52 @@ $(document).ready(function() {
     //Empty the container each time tweets are rendered
     $("#tweets-container").empty();
     for (const tweet of tweets) {
-      //Prepend to container the result of createTweetElement (works in reverse chron order)
+      //Prepend to container the result of createTweetElement
       $("#tweets-container").prepend(createTweetElement(tweet));
     }
   };
 
   //POST TWEET TO SERVER ON 'SUBMIT'//
-
-  //Event listener: target #submit-tweet form, listen for submit
-  $("#submit-tweet").submit(function(event) {
+  //Event listener: on submit of the #submit-tweet form
+  $(document).on("submit", "#submit-tweet", function (event) {
     event.preventDefault(); // prevent submit from refreshing page
     const newTweetData = $(this).serialize(); //turns form data into a query string and stores in newTweetData
     const charCount = $("#tweet-text").val().length; //Check character count of text input only(no extra chars from query)
 
-    //If charCount 0 or > 140 throw HTML formatted error
-    //>>Slide animations take 0.5 secs
-    //>>setTimeout used to slideUp error after 3.5 secs
+    //Handling errors by adding HTML (HTML at end of file)
+    //Characters exceeded
     if (charCount > 140) {
-      $(".validation")
-        .html(
-          '<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>'
-        )
-        .slideDown(500);
+      $(".validation").html(charsExceeded).slideDown(500);
       $(".validation").css("display", "flex");
-      setTimeout(function() {
+      setTimeout(function () {
         $(".validation").slideUp(500);
       }, 3500);
+      //Empty tweet submitted
     } else if (charCount === 0) {
-      $(".validation")
-        .html(
-          '<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>'
-        )
-        .slideDown(500);
+      $(".validation").html(submitEmpty).slideDown(500);
       $(".validation").css("display", "flex");
-      setTimeout(function() {
+      setTimeout(function () {
         $(".validation").slideUp(500);
       }, 3500);
     }
 
-    //If charCount okay, proceed with AJAX post promise chain
+    //If no errors, proceed with GET post promise chain
     else {
-      $.ajax({
+      $.get({
         url: "/tweets", // URL path to send AJAX request
         method: "POST", // type of request
         data: newTweetData, //data to send with request
       })
         //if request successful send response
-        .then(function(response) {
+        .then(function (response) {
           console.log("Request succeeded:", response);
         })
-        //if send response successful, then call loadTweets function (allows site to render tweet without refresh)
+        //if send response successful, then call loadTweets
         .then(() => {
           loadTweets();
         })
         //if there is an error anywhere in the promise chain, throw error
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("Request failed:", error);
         });
       //reset the form after submission
@@ -110,16 +95,16 @@ $(document).ready(function() {
   });
 
   //GET TWEETS FROM SERVER//
-  const loadTweets = function() {
+  const loadTweets = function () {
     //Get JSON data from /tweets URL
     $.ajax("/tweets", { method: "GET" })
       //if request succeeds, then call renderTweets :)
-      .then(function(response) {
+      .then(function (response) {
         console.log("Success: ", response);
         renderTweets(response);
       })
       //If any promise fails, throw error
-      .catch(function(error) {
+      .catch(function (error) {
         console.log("Request failed:", error);
       });
   };
@@ -127,3 +112,11 @@ $(document).ready(function() {
   //loadTweets called on page load for default tweets
   loadTweets();
 });
+
+//Error for exceeding character count
+const charsExceeded =
+  '<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>';
+
+//Error for submitting empty tweet
+const submitEmpty =
+  '<span class="error"><i class="fa fa-circle-exclamation"></i> Oops, please input a tweet</span>';
