@@ -1,8 +1,7 @@
 # Tweeter Project
 
-Tweeter is a simple, single-page Twitter clone.
+Tweeter is a simple, single-page Twitter clone.  Project was primarily focused on introducing us to front-end dynamic websit design using HTML, CSS, and DOM manipulation using JQuery.  Secondary focus was on further honing back-end skills with Express, HTTP, and GET/POST requests and responses.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express back-end skills.
 
 ## Tablet view
 
@@ -11,12 +10,10 @@ https://github.com/vktr-r2/tweeter/blob/master/docs/tablet-view.png?raw=true
 
 ## Getting Started
 
-1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
-2. Clone your repository onto your local device.
-3. Install dependencies using the `npm install` command.
-3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
-4. Go to <http://localhost:8080/> in your browser.
-5. Site is loaded with two default tweets.  Toggle tweet form (click button in top right corner of page) and start tweeting!
+1. Install dependencies using the `npm install` command.
+2. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
+3. Go to <http://localhost:8080/> in your browser.
+4. Site is loaded with two default tweets.  Toggle tweet form (click button in top right corner of page) and start tweeting!
 
 ## Dependencies
 
